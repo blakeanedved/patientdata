@@ -1,5 +1,7 @@
 body {
-	background-color: #A2A2A1FF;
+	background-image: linear-gradient(to bottom right, #90caf9, #64b5f6);
 	margin: 0;
 	padding: 0;
+	width: 100vw;
+	height: 100vh;
 }
