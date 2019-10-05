@@ -13,7 +13,7 @@
     <script defer src="/__/firebase/7.1.0/firebase-app.js"></script>
     <!-- include only the Firebase features as you need -->
     <script defer src="/__/firebase/7.1.0/firebase-auth.js"></script>
-    <script defer src="/__/firebase/7.1.0/firebase-database.js"></script>
+    <script defer src="/__/firebase/7.1.0/firebase-firestore.js"></script>
     <script defer src="/__/firebase/7.1.0/firebase-messaging.js"></script>
     <script defer src="/__/firebase/7.1.0/firebase-storage.js"></script>
     <!-- initialize the SDK after all desired features are loaded -->
@@ -37,63 +37,37 @@
             <header>
                 <h1>Welcome to the Generative Adversarial Network Output</h1>
             </header>
+            <!-- search through the names -->
+            <input type="text" id="myInput" onkeyup="table_search()" placeholder="Search by name">
             <!-- example table for now -->
             <table id="customers">
                 <tr>
-                    <th>Company</th>
-                    <th>Contact</th>
-                    <th>Country</th>
+                    <th>Name</th>
+                    <th>ID</th>
+                    <th>Age</th>
+                    <th>Height</th>
+                    <th>Sex</th>
+                    <th>Dominant Race</th>
+                    <th>Resting Heartrate</th>
+                    <th>Systolic Blood Pressure</th>
+                    <th>Diastolic Blood Pressure</th>
+                    <th>Weight</th>
+                    <th>Blood Sugar</th>
                 </tr>
                 <tr>
-                    <td>Alfreds Futterkiste</td>
-                    <td>Maria Anders</td>
-                    <td>Germany</td>
+                    <td>John Doe</td>
+                    <td>1</td>
+                    <td>25</td>
+                    <td>72</td>
+                    <td>M</td>
+                    <td>Teil</td>
+                    <td>60</td>
+                    <td>120</td>
+                    <td>80</td>
+                    <td>160</td>
+                    <td>40</td>
                 </tr>
-                <tr>
-                    <td>Berglunds snabbköp</td>
-                    <td>Christina Berglund</td>
-                    <td>Sweden</td>
-                </tr>
-                <tr>
-                    <td>Centro comercial Moctezuma</td>
-                    <td>Francisco Chang</td>
-                    <td>Mexico</td>
-                </tr>
-                <tr>
-                    <td>Ernst Handel</td>
-                    <td>Roland Mendel</td>
-                    <td>Austria</td>
-                </tr>
-                <tr>
-                    <td>Island Trading</td>
-                    <td>Helen Bennett</td>
-                    <td>UK</td>
-                </tr>
-                <tr>
-                    <td>Königlich Essen</td>
-                    <td>Philip Cramer</td>
-                    <td>Germany</td>
-                </tr>
-                <tr>
-                    <td>Laughing Bacchus Winecellars</td>
-                    <td>Yoshi Tannamuri</td>
-                    <td>Canada</td>
-                </tr>
-                <tr>
-                    <td>Magazzini Alimentari Riuniti</td>
-                    <td>Giovanni Rovelli</td>
-                    <td>Italy</td>
-                </tr>
-                <tr>
-                    <td>North/South</td>
-                    <td>Simon Crowther</td>
-                    <td>UK</td>
-                </tr>
-                <tr>
-                    <td>Paris spécialités</td>
-                    <td>Marie Bertrand</td>
-                    <td>France</td>
-                </tr>
+                
             </table>
         </div>
     </div>
