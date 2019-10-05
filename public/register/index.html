@@ -4,10 +4,10 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Login</title>
+	<title>Register</title>
 
-	<link rel="stylesheet" href="css/master.css">
-	<link rel="stylesheet" href="css/login.css">
+	<link rel="stylesheet" href="../css/master.css">
+	<link rel="stylesheet" href="../css/login.css">
 
 	<!-- update the version number as needed -->
 	<script defer src="/__/firebase/7.1.0/firebase-app.js"></script>
@@ -23,15 +23,16 @@
 </head>
 
 <body>
-	<div class="login-container">
+	<div class="login-container" style="height: 250px;">
 		<div class="inner">
 			<input type="email" placeholder="Enter Email" name="email" id="email" required>
 			<input type="password" placeholder="Enter Password" name="password" id="password" required>
-			<button type="submit" id="submit">Submit</button>
+			<input type="password" placeholder="Confirm Password" name="confirm" id="confirm" required>
+			<button type="submait" id="submit">Submit</button>
 		</div>
 	</div>
-	<script src="js/master.js"></script>
-	<script src="js/login.js"></script>
+	<script src="../js/master.js"></script>
+	<script src="../js/register.js"></script>
 </body>
 
 </html>
