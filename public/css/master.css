@@ -1,9 +1,11 @@
 body {
-	background-image: linear-gradient(to bottom right, #90caf9, #64b5f6);
+	background: fixed linear-gradient(to right bottom, #485DA6, #00a1ba, #32b37b);
 	margin: 0;
 	padding: 0;
 	width: 100vw;
 	height: 100vh;
+	overflow: hidden;
+	font-family: 'Roboto', sans-serif !important;
 }
 
 /* The navigation menu links */

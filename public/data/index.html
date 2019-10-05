@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Welcome to Firebase Hosting</title>
 
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/master.css">
     <link rel="stylesheet" href="../css/data.css">
 
@@ -24,21 +25,22 @@
 
 <body>
     <div class="container">
-        <div id="mySidenav" class="sidenav">
+        <!-- <div id="mySidenav" class="sidenav">
             <a href="index.html">Table View</a>
             <a href="graph.html">Graph View</a>
             <a href="#">Support</a>
             <a href="#">Contact</a>
-            <!-- <a href="https://skymind.ai/wiki/generative-adversarial-network-gan" target="_blank">GAN Inroduction</a> -->
-        </div>
+        </div> -->
 
         <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
         <div id="main">
-            <header>
+            <div class="header">
                 <h1>Welcome to the Generative Adversarial Network Output</h1>
-            </header>
+            </div>
             <!-- search through the names -->
-            <input type="text" id="filter" placeholder="Filter">
+            <div class="filter-container">
+                <input type="text" id="filter" placeholder="Filter">
+            </div>
             <!-- example table for now -->
             <table id="customers"></table>
         </div>

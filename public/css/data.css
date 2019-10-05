@@ -1,7 +1,9 @@
 /* Page content */
 #main {
-  margin-left: 230px;
-  margin-right: 30px;
+  /* margin-left: 230px;
+  margin-right: 30px; */
+  margin: 24px;
+  margin-top: 150px;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
@@ -10,39 +12,49 @@
   .sidenav a {font-size: 18px;}
 }
 
-
 #customers {
-    border-collapse: collapse;
-    width: 100%;
+    border-collapse: separate;
+    border-radius: 23px;
+	width: 100%;
+	padding: 10px;
+	background-color: white;
     box-shadow: 0 4px 30px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 10px;
-  }
+}
 
-#customers tr:last-child > td {
-    border-bottom: none;
-  }
+td {
+	text-align: center;
+}
   
-  #customers td, #customers th, #customers tr {
-    border: 1px solid rgb(160, 151, 151);
+#customers td, #customers th, #customers tr {
     padding: 8px;
-    background-color: white;
-  }
+}
 
-
-  #customers td:hover {background-color: rgb(136, 130, 130);}
-  
-  #customers th {
+#customers th {
     padding-top: 12px;
     padding-bottom: 12px;
-    text-align: left;
-    background-color: #195190FF;
-    color: white;
-  }
+} 
 
-  #filter {
-    width: 100%; /* Full-width */
-    font-size: 16px; /* Increase font-size */
+.filter-container {
     padding: 12px 0 12px 0; /*Add some padding*/
-    border: 1px solid #ddd; /* Add a grey border */
-    margin-bottom: 12px; /* Add some space below the input */
-  }
+    /*border: 1px solid #ddd; /* Add a grey border */
+	margin-bottom: 24px; /* Add some space below the input */
+	/* margin-top: 24px; */
+    border-radius: 50px;
+    background-color: white;
+    box-shadow: 0 4px 30px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#filter {
+	width: 97%; /* Full-width */
+	position: relative;
+	left: 1.5%;
+	font-size: 16px; /* Increase font-size */
+	margin-left: 0;
+	border: none;
+}
+
+.header {
+	text-align: center;
+	color: white;
+	display: none;
+}
