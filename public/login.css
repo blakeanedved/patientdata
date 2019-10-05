@@ -1,0 +1,56 @@
+
+.login-container {
+	width: 400px;
+	height: 200px;
+	background-color: #FFFFFF;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.inner {
+	position: relative;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.login-container > .inner > #email, .login-container > .inner > #password {
+	border: none;
+	border-bottom: 2px solid #0090d3;
+	font-size: 1.5em;
+	width: 80%;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	padding-top: 20px;
+}
+
+.login-container > .inner > #submit {
+	width: 40%;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	border: 2px solid #00a3ee;
+	/* border-radius: 10px; */
+	padding: 10px;
+	background-color: #0090d3;
+	font-size: 1.1em;
+	color: white;
+	margin-top: 20px;
+}
+
+.login-container > .inner > #submit:active {
+	width: 40%;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	border: 2px solid #00628f;
+	/* border-radius: 10px; */
+	padding: 10px;
+	background-color: #00557c;
+	font-size: 1.1em;
+	color: white;
+	margin-top: 20px;
+}
