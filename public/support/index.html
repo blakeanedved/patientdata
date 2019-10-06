@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Welcome to Firebase Hosting</title>
 
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/master.css">
     <link rel="stylesheet" href="../css/support.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/default.min.css">
@@ -33,23 +34,23 @@
         <div id="main">
             <header id="navbar">
                 <div class="navbar-title">
-                    <img src="../images/Genp.png">
+                    <img src="../images/Genp.png" onclick="window.location='../';">
                 </div>
                 <div class="navbar-links">
                     <div class="navbar-links__link">
-                        <div class="navbar-links__link-text">Data</div>
+                        <div class="navbar-links__link-text" onclick="window.location='../data/';">Data</div>
                         <div class="navbar-links__link-underline"></div>
                     </div>
                     <div class="navbar-links__link">
-                        <div class="navbar-links__link-text">Charts</div>
+                        <div class="navbar-links__link-text" onclick="window.location='../chart/';">Charts</div>
                         <div class="navbar-links__link-underline"></div>
                     </div>
                     <div class="navbar-links__link">
-                        <div class="navbar-links__link-text">Support</div>
+                        <div class="navbar-links__link-text" onclick="window.location='../support/';">Support</div>
                         <div class="navbar-links__link-underline"></div>
                     </div>
                     <div class="navbar-links__link">
-                        <div class="navbar-links__link-text">Logout</div>
+                        <div class="navbar-links__link-text" onclick="window.location='../logout/';">Logout</div>
                         <div class="navbar-links__link-underline"></div>
                     </div>
                 </div>
@@ -57,7 +58,7 @@
             <div id=content_container>
                 <div id="content">
                     <div><strong>Source Code for the site and GAN:</strong></div><br>
-                        <code class="plaintext hljs">
+                    <code class="plaintext hljs">
                             https://github.com/blakeanedved/patientdata
                         </code><br><br>
                     <div><strong>Final Generated Patient Data:</strong></div><br>
@@ -85,9 +86,9 @@ firebase_admin.initialize_app(cred, {<br>
 <br>
 db = firestore.client()<br>
 </code></pre>
-    <br><br>
-    <div><strong>Adding Data:</strong></div><br>
-    <pre><code class="python hljs">
+                    <br><br>
+                    <div><strong>Adding Data:</strong></div><br>
+                    <pre><code class="python hljs">
 doc_ref = db.collection(u'data').document(u'alovelace')<br>
 doc_ref.set({<br>
     u'first': u'Ada',<br>
@@ -95,8 +96,8 @@ doc_ref.set({<br>
     u'born': 1815<br>
 })<br>
 </code></pre><br><br>
-<div><strong>Retrieving Data:</strong></div><br>
-<pre><code class="python hljs">
+                    <div><strong>Retrieving Data:</strong></div><br>
+                    <pre><code class="python hljs">
 data_ref = db.collection(u'data')<br>
 docs = data_ref.stream()<br>
 <br>

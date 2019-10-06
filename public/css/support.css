@@ -6,8 +6,11 @@ code {
 }
 
 #content {
-    padding: 75px;
-    width: 750px;
+    padding-left: 13%;
+    padding-right: 13%;
+    padding-top: 70px;
+    padding-bottom: 30px;
+    width: 74%;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
@@ -15,12 +18,14 @@ code {
 
 #content_container{
     width: 60vw;
-    position: absolute;
+    position: relative;
     left: 20vw;
     background-color: white;
     border-radius: 25px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 30px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #main{
-    padding-top: 200px;
+    padding-top: 150px;
 }

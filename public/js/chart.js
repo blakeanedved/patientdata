@@ -1,9 +1,4 @@
-data = [
-	{ 'num': 1, 'num2': 2, 'num3': 9, 'num4': 10, 'gender': 'male' },
-	{ 'num': 3, 'num2': 4, 'num3': 11, 'num4': 12, 'gender': 'male' },
-	{ 'num': 5, 'num2': 6, 'num3': 13, 'num4': 14, 'gender': 'male' },
-	{ 'num': 7, 'num2': 8, 'num3': 15, 'num4': 16, 'gender': 'female' },
-]
+data = []
 
 document.addEventListener('DOMContentLoaded', function () {
 	var db = firebase.firestore()
@@ -30,8 +25,29 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 
 	const drawGraphs = () => {
-		addGraph('CHECK', 'doughnut', 'num')
-		addGraph('num vs num2', 'scatter', [{ args: ['num', 'num2'], filter: ['gender', 'male'] }, { args: ['num', 'num3'], filter: ['gender', 'female'] }])
+		addGraph('Race Distribution', 'doughnut', 'race')
+		addGraph('Height vs Weight', 'scatter', [
+			{ args: ['height', 'weight'], filter: ['sex', 'male'] },
+			{ args: ['height', 'weight'], filter: ['sex', 'female'] }
+		])
+		addGraph('Weight vs Age', 'scatter', [
+			{ args: ['age', 'weight'], filter: ['race', 'Teal'] },
+			{ args: ['age', 'weight'], filter: ['race', 'Blue'] },
+			{ args: ['age', 'weight'], filter: ['race', 'Purple'] },
+			{ args: ['age', 'weight'], filter: ['race', 'Green'] }
+		])
+		addGraph('Height vs Age', 'scatter', [
+			{ args: ['age', 'height'], filter: ['race', 'Teal'] },
+			{ args: ['age', 'height'], filter: ['race', 'Blue'] },
+			{ args: ['age', 'height'], filter: ['race', 'Purple'] },
+			{ args: ['age', 'height'], filter: ['race', 'Green'] }
+		])
+		addGraph('Weight vs Blood Pressure', 'scatter', [
+			{ args: ['weight', 'systolic_blood_pressure'], filter: ['race', 'Teal'] },
+			{ args: ['weight', 'systolic_blood_pressure'], filter: ['race', 'Blue'] },
+			{ args: ['weight', 'systolic_blood_pressure'], filter: ['race', 'Purple'] },
+			{ args: ['weight', 'systolic_blood_pressure'], filter: ['race', 'Green'] }
+		])
 	}
 
 	const getData = () => {
@@ -43,13 +59,13 @@ document.addEventListener('DOMContentLoaded', function () {
 			drawGraphs();
 		}, function (error) {
 			console.log(error.message)
-		})()
+		})
 	}
 
 	firebase.auth().onAuthStateChanged(function (user) {
 		if (user) {
-			drawGraphs();
-			// getData();
+			// drawGraphs();
+			getData();
 		} else {
 			window.location = '../'
 		}
@@ -109,17 +125,50 @@ function newScatterChart(ctx, args) {
 	for (var a = 0; a < args.length; a++) {
 		var chartdata = []
 
+		var label = `${args[a].args[0]} vs ${args[a].args[1]}`
+
+		if (args[a].filter != undefined) {
+			if (['race', 'sex', 'name'].indexOf(args[a].filter[0]) != -1) {
+				label = args[a].filter[1]
+			} else {
+				label = `${args[a].filter[0]} ${args[a].filter[1]} ${args[a].filter[2]}`
+			}
+		}
+
 		for (var i = 0; i < data.length; i++) {
 			if (args[a].filter != undefined) {
-				if (args[a].filter[0] == 'gender') {
-					if (data[i]['gender'] == args[a].filter[1])
-						chartdata.push({ x: data[i][args[a].args[0]], y: data[i][args[a].args[1]] })
-				} else if (args[a].filter[0] == 'race') {
-					if (data[i]['race'] == args[a].filter[1])
+				if (['race', 'sex', 'name'].indexOf(args[a].filter[0]) != -1) {
+					if (data[i][args[a].filter[0]] == args[a].filter[1])
 						chartdata.push({ x: data[i][args[a].args[0]], y: data[i][args[a].args[1]] })
 				} else {
-					chartdata.push({ x: data[i][args[a].args[0]], y: data[i][args[a].args[1]] })
+					switch (args[a].filter[1]) {
+						case '==':
+							if (data[i][args[a].filter[0]] == args[a].filter[2])
+								chartdata.push({ x: data[i][args[a].args[0]], y: data[i][args[a].args[1]] })
+							break;
+						case '<':
+							if (data[i][args[a].filter[0]] < args[a].filter[2])
+								chartdata.push({ x: data[i][args[a].args[0]], y: data[i][args[a].args[1]] })
+							break;
+						case '>':
+							if (data[i][args[a].filter[0]] > args[a].filter[2])
+								chartdata.push({ x: data[i][args[a].args[0]], y: data[i][args[a].args[1]] })
+							break;
+						case '<=':
+							if (data[i][args[a].filter[0]] <= args[a].filter[2])
+								chartdata.push({ x: data[i][args[a].args[0]], y: data[i][args[a].args[1]] })
+							break;
+						case '>=':
+							if (data[i][args[a].filter[0]] >= args[a].filter[2])
+								chartdata.push({ x: data[i][args[a].args[0]], y: data[i][args[a].args[1]] })
+							break;
+						case '!=':
+							if (data[i][args[a].filter[0]] != args[a].filter[2])
+								chartdata.push({ x: data[i][args[a].args[0]], y: data[i][args[a].args[1]] })
+							break;
+					}
 				}
+
 			} else {
 				chartdata.push({ x: data[i][args[a].args[0]], y: data[i][args[a].args[1]] })
 			}
@@ -128,7 +177,7 @@ function newScatterChart(ctx, args) {
 		datasets.push({
 			backgroundColor: colors[a],
 			borderColor: colors[a],
-			label: `${args[a].args[0]} vs ${args[a].args[1]}`,
+			label: label,
 			data: chartdata
 		})
 	}
