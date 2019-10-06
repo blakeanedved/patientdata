@@ -4,3 +4,23 @@ code {
     font-family: courier, monospace;
     padding: 0 3px;
 }
+
+#content {
+    padding: 75px;
+    width: 750px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#content_container{
+    width: 60vw;
+    position: absolute;
+    left: 20vw;
+    background-color: white;
+    border-radius: 25px;
+}
+
+#main{
+    padding-top: 200px;
+}
