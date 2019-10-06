@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 
 	const getData = () => {
-		db.collection('data').limit(100).onSnapshot(function (snapshot) {
+		db.collection('data').limit(2000).onSnapshot(function (snapshot) {
 			data = []
 			snapshot.forEach(function (doc) {
 				data.push(doc.data())

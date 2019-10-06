@@ -3,18 +3,43 @@ data = []
 document.addEventListener('DOMContentLoaded', function () {
 	var db = firebase.firestore()
 
-	const addGraph = function (title, charttype, args) {
+	const addGraph = function (title, charttype, args, size, start) {
+		var heights = [0, 0, 0, 0]
 		var min = 9999999
 		var minIndex = 0
-		$('#main > .column > .inner-column').each(function (index) {
-			if ($(this).height() < min) {
-				min = $(this).height()
-				minIndex = index
+		for (var i = 0; i < 4; i++) {
+			$(`#main > .card.card${i + 1}`).each(function (index) {
+				heights[i] += $(this).height()
+			})
+			if (heights[i] < min) {
+				min = heights[i]
+				minIndex = i
 			}
-		})
+		}
+
+		classes = ''
+		var xstart = minIndex
+		var amt = 1
+		if (size != undefined) {
+			if (size == 2) {
+				if (start == 1) {
+					classes = `card card1 card2`
+					xstart = 0;
+					amt = 2;
+				} else if (start == 2) {
+					classes = `card card3 card4`
+					xstart = 2;
+					amt = 2;
+				}
+			}
+		}
+
+		if (classes == '') {
+			classes = `card card${minIndex + 1}`
+		}
 
 		var random = Math.floor(Math.random() * 10000000)
-		$(`.column${minIndex + 1} > .inner-column`).append(`<div class="card"><div class="card-title">${title}</div><div class="chartcontainer"><canvas id="chart-${random}"></canvas></div></div>`)
+		$(`#main`).append(`<div class="${classes}" style="grid-column: ${xstart + 2}/span ${amt}"><div class="card-title">${title}</div><div class="chartcontainer"><canvas id="chart-${random}"></canvas></div></div>`)
 		var ctx = document.getElementById(`chart-${random}`).getContext('2d');
 
 		if (charttype == 'doughnut') {
@@ -25,7 +50,14 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 
 	const drawGraphs = () => {
-		addGraph('Race Distribution', 'doughnut', 'race')
+		addGraph('Weight vs Blood Pressure', 'scatter', [
+			{ args: ['weight', 'systolic_blood_pressure'] }
+		], 2, 1)
+		addGraph('Age vs Resting Heartrate', 'scatter', [
+			{ args: ['age', 'resting_heartrate'], filter: ['sex', 'male'] },
+			{ args: ['age', 'resting_heartrate'], filter: ['sex', 'female'] }
+		], 2, 2)
+		addGraph('Sex Distribution', 'doughnut', 'sex')
 		addGraph('Height vs Weight', 'scatter', [
 			{ args: ['height', 'weight'], filter: ['sex', 'male'] },
 			{ args: ['height', 'weight'], filter: ['sex', 'female'] }
@@ -42,16 +74,17 @@ document.addEventListener('DOMContentLoaded', function () {
 			{ args: ['age', 'height'], filter: ['race', 'Purple'] },
 			{ args: ['age', 'height'], filter: ['race', 'Green'] }
 		])
-		addGraph('Weight vs Blood Pressure', 'scatter', [
-			{ args: ['weight', 'systolic_blood_pressure'], filter: ['race', 'Teal'] },
-			{ args: ['weight', 'systolic_blood_pressure'], filter: ['race', 'Blue'] },
-			{ args: ['weight', 'systolic_blood_pressure'], filter: ['race', 'Purple'] },
-			{ args: ['weight', 'systolic_blood_pressure'], filter: ['race', 'Green'] }
+		addGraph('Height vs Resting Heartrate', 'scatter', [
+			{ args: ['height', 'resting_heartrate'], filter: ['sex', 'male'] },
+			{ args: ['height', 'resting_heartrate'], filter: ['sex', 'female'] }
 		])
+		addGraph('Age vs Systolic Blood Pressure', 'scatter', [{ args: ['age', 'systolic_blood_pressure'] }])
+		addGraph('Height vs Blood Pressure', 'scatter', [{ args: ['height', 'systolic_blood_pressure'] }])
+		addGraph('Resting Heart Rate vs Blood Pressure', 'scatter', [{ args: ['resting_heartrate', 'systolic_blood_pressure'] }])
 	}
 
 	const getData = () => {
-		db.collection('data').limit(100).onSnapshot(function (snapshot) {
+		db.collection('data').limit(2000).onSnapshot(function (snapshot) {
 			data = []
 			snapshot.forEach(function (doc) {
 				data.push(doc.data())
