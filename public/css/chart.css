@@ -3,8 +3,9 @@
 }
 /* Page content */
 #main {
-    margin-left: 230px;
-    margin-right: 30px;
+    /* margin-left: 230px; */
+    /* margin-right: 30px; */
+    margin: 24px;
   }
 
 #chart_card {
