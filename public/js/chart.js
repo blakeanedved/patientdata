@@ -1,8 +1,8 @@
 data = [
-	{ 'num': 1, 'num2': 2 },
-	{ 'num': 3, 'num2': 4 },
-	{ 'num': 5, 'num2': 6 },
-	{ 'num': 7, 'num2': 8 }
+	{ 'num': 1, 'num2': 2, 'num3': 9, 'num4': 10, 'gender': 'male' },
+	{ 'num': 3, 'num2': 4, 'num3': 11, 'num4': 12, 'gender': 'male' },
+	{ 'num': 5, 'num2': 6, 'num3': 13, 'num4': 14, 'gender': 'male' },
+	{ 'num': 7, 'num2': 8, 'num3': 15, 'num4': 16, 'gender': 'female' },
 ]
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -24,8 +24,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		if (charttype == 'doughnut') {
 			newDoughnutChart(ctx, args)
-		} else if (charttype == 'line') {
-			newLineChart(ctx, args)
 		} else if (charttype == 'scatter') {
 			newScatterChart(ctx, args)
 		}
@@ -33,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	const drawGraphs = () => {
 		addGraph('CHECK', 'doughnut', 'num')
-		addGraph('num vs num2', 'scatter', ['num', 'num2'])
+		addGraph('num vs num2', 'scatter', [{ args: ['num', 'num2'], filter: ['gender', 'male'] }, { args: ['num', 'num3'], filter: ['gender', 'female'] }])
 	}
 
 	const getData = () => {
@@ -106,23 +104,40 @@ function newDoughnutChart(ctx, arg) {
 }
 
 function newScatterChart(ctx, args) {
-	var chartdata = []
+	var datasets = []
+	var colors = getColors(args.length)
+	for (var a = 0; a < args.length; a++) {
+		var chartdata = []
 
-	for (var i = 0; i < data.length; i++) {
-		chartdata.push({ x: data[i][args[0]], y: data[i][args[1]] })
+		for (var i = 0; i < data.length; i++) {
+			if (args[a].filter != undefined) {
+				if (args[a].filter[0] == 'gender') {
+					if (data[i]['gender'] == args[a].filter[1])
+						chartdata.push({ x: data[i][args[a].args[0]], y: data[i][args[a].args[1]] })
+				} else if (args[a].filter[0] == 'race') {
+					if (data[i]['race'] == args[a].filter[1])
+						chartdata.push({ x: data[i][args[a].args[0]], y: data[i][args[a].args[1]] })
+				} else {
+					chartdata.push({ x: data[i][args[a].args[0]], y: data[i][args[a].args[1]] })
+				}
+			} else {
+				chartdata.push({ x: data[i][args[a].args[0]], y: data[i][args[a].args[1]] })
+			}
+		}
+
+		datasets.push({
+			backgroundColor: colors[a],
+			borderColor: colors[a],
+			label: `${args[a].args[0]} vs ${args[a].args[1]}`,
+			data: chartdata
+		})
 	}
 
-	var colors = getColors(1)
 
 	new Chart(ctx, {
 		type: 'scatter',
 		data: {
-			datasets: [{
-				backgroundColor: colors[0],
-				borderColor: colors[0],
-				label: `${args[0]} vs ${args[1]}`,
-				data: chartdata
-			}]
+			datasets: datasets
 		},
 		options: {
 			scales: {
