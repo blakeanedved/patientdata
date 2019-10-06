@@ -8,7 +8,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/master.css">
-    <link rel="stylesheet" href="../css/support.css">
+    <link rel="stylesheet" href="../css/generate.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/default.min.css">
 
     <!-- update the version number as needed -->
@@ -24,7 +24,6 @@
     <script defer src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
 
 </head>
 
@@ -50,8 +49,8 @@
                         <div class="navbar-links__link-underline"></div>
                     </div>
                     <div class="navbar-links__link">
-                            <div class="navbar-links__link-text" onclick="window.location='../generate/';">Generate</div>
-                            <div class="navbar-links__link-underline"></div>
+                        <div class="navbar-links__link-text" onclick="window.location='../generate/';">Generate</div>
+                        <div class="navbar-links__link-underline"></div>
                     </div>
                     <div class="navbar-links__link">
                         <div class="navbar-links__link-text" onclick="window.location='../logout/';">Logout</div>
@@ -61,57 +60,24 @@
             </header>
             <div id=content_container>
                 <div id="content">
-                    <div><strong>Source Code for the site and GAN:</strong></div><br>
-                    <code class="plaintext hljs">
-                            <a href="https://github.com/blakeanedved/patientdata" target="_blank">https://github.com/blakeanedved/patientdata</a>
-                        </code><br><br>
-                    <div><strong>Final Generated Patient Data:</strong></div><br>
-                    <code class="plaintext hljs">
-                            <a href="https://firebasestorage.googleapis.com/v0/b/patientdata-sts.appspot.com/o/generated_patient_data.csv?alt=media&token=1e95663f-dcf7-4091-bcad-05c895d24b71" target="_blank">https://firebasestorage.googleapis.com/v0/b/patientdata-sts.appspot.com/o/generated_patient_data.csv?alt=media&token=1e95663f-dcf7-4091-bcad-05c895d24b71</a>
-                        </code><br><br>
-                    <div><strong>To use python to interact with our REST API, start by installing the firebase_admin
-                            python
-                            library:</strong></div><br>
-                    <code class="plaintext hljs">
-                        pip install --upgrade firebase-admin
-                    </code>
-                    <br><br><br>
-                    <div><strong>Initialization on Google Cloud Platform:</strong></div><br>
-                    <pre><code class="python">
-import firebase_admin<br>
-from firebase_admin import credentials<br>
-from firebase_admin import firestore<br>
-<br>
-# Use the application default credentials<br>
-cred = credentials.ApplicationDefault()<br>
-firebase_admin.initialize_app(cred, {<br>
-    'projectId': project_id,<br>
-})<br>
-<br>
-db = firestore.client()<br>
-</code></pre>
-                    <br><br>
-                    <div><strong>Adding Data:</strong></div><br>
-                    <pre><code class="python hljs">
-doc_ref = db.collection(u'data').document(u'alovelace')<br>
-doc_ref.set({<br>
-    u'first': u'Ada',<br>
-    u'last': u'Lovelace',<br>
-    u'born': 1815<br>
-})<br>
-</code></pre><br><br>
-                    <div><strong>Retrieving Data:</strong></div><br>
-                    <pre><code class="python hljs">
-data_ref = db.collection(u'data')<br>
-docs = data_ref.stream()<br>
-<br>
-for doc in docs:<br>
-    print(u'{} => {}'.format(doc.id, doc.to_dict()))<br>
-</code></pre>
+                    <p id="intro">
+                            Welcome to the Gen-P interactive generation module. Using the provided form below, upload a
+                            sample set of real patient data, along with an integer value of the population you would
+                            like to reproduce:
+                    </p>
+                    <br>
+                    <div class="generate-container">
+                            <div class="inner">
+                                <input type="file" name="upload_file" id="upload_file" required><br>
+                                <input type="number" placeholder="Generated population size" name="population" id="population" required><br><br>
+                                <button type="submit" id="generate">Generate</button>
+                            </div>
+                        </div>
                 </div>
             </div>
         </div>
     </div>
+
     <script src="../js/master.js"></script>
 </body>
 
