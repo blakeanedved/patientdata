@@ -5,10 +5,43 @@
 #main {
     /* margin-left: 230px; */
     /* margin-right: 30px; */
-    margin: 24px;
-  }
+    /* padding: 24px; */
+    margin-top: 150px;
+    height: auto;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 12px 1fr 1fr 1fr 1fr 12px;
+}
 
-#chart_card {
-    width: 400px;
-    height: 400px;
+.column {
+    margin: 12px;
+    height: auto;
+}
+
+.column1 {
+    grid-column: 2;
+}
+
+.column2 {
+    grid-column: 3;
+}
+
+.column3 {
+    grid-column: 4;
+}
+
+.column4 {
+    grid-column: 5;
+}
+
+.card {
+    background-color: white;
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 24px;
+}
+
+.card-title {
+    font-size: 1.8em;
+    text-align: center;
 }
