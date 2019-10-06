@@ -1,7 +1,3 @@
-.myChart {
-    background-color: white;
-}
-
 #main {
     margin-top: 150px;
     height: auto;
@@ -9,6 +5,7 @@
     display: grid;
     grid-template-columns: 12px 1fr 1fr 1fr 1fr 12px;
     grid-gap: 24px;
+    margin-bottom: 24px;
 }
 
 .card {

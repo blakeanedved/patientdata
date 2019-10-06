@@ -50,15 +50,14 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 
 	const drawGraphs = () => {
-		addGraph('Height vs Resting Heartrate', 'scatter', [
-			{ args: ['height', 'resting_heartrate'], filter: ['sex', 'male'] },
-			{ args: ['height', 'resting_heartrate'], filter: ['sex', 'female'] }
+		addGraph('Weight vs Blood Pressure', 'scatter', [
+			{ args: ['weight', 'systolic_blood_pressure'] }
 		], 2, 1)
 		addGraph('Age vs Resting Heartrate', 'scatter', [
 			{ args: ['age', 'resting_heartrate'], filter: ['sex', 'male'] },
 			{ args: ['age', 'resting_heartrate'], filter: ['sex', 'female'] }
 		], 2, 2)
-		addGraph('Race Distribution', 'doughnut', 'race')
+		addGraph('Sex Distribution', 'doughnut', 'sex')
 		addGraph('Height vs Weight', 'scatter', [
 			{ args: ['height', 'weight'], filter: ['sex', 'male'] },
 			{ args: ['height', 'weight'], filter: ['sex', 'female'] }
@@ -75,16 +74,17 @@ document.addEventListener('DOMContentLoaded', function () {
 			{ args: ['age', 'height'], filter: ['race', 'Purple'] },
 			{ args: ['age', 'height'], filter: ['race', 'Green'] }
 		])
-		addGraph('Weight vs Blood Pressure', 'scatter', [
-			{ args: ['weight', 'systolic_blood_pressure'], filter: ['race', 'Teal'] },
-			{ args: ['weight', 'systolic_blood_pressure'], filter: ['race', 'Blue'] },
-			{ args: ['weight', 'systolic_blood_pressure'], filter: ['race', 'Purple'] },
-			{ args: ['weight', 'systolic_blood_pressure'], filter: ['race', 'Green'] }
+		addGraph('Height vs Resting Heartrate', 'scatter', [
+			{ args: ['height', 'resting_heartrate'], filter: ['sex', 'male'] },
+			{ args: ['height', 'resting_heartrate'], filter: ['sex', 'female'] }
 		])
+		addGraph('Age vs Systolic Blood Pressure', 'scatter', [{ args: ['age', 'systolic_blood_pressure'] }])
+		addGraph('Height vs Blood Pressure', 'scatter', [{ args: ['height', 'systolic_blood_pressure'] }])
+		addGraph('Resting Heart Rate vs Blood Pressure', 'scatter', [{ args: ['resting_heartrate', 'systolic_blood_pressure'] }])
 	}
 
 	const getData = () => {
-		db.collection('data').limit(100).onSnapshot(function (snapshot) {
+		db.collection('data').limit(2000).onSnapshot(function (snapshot) {
 			data = []
 			snapshot.forEach(function (doc) {
 				data.push(doc.data())
