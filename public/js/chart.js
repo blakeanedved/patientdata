@@ -3,18 +3,43 @@ data = []
 document.addEventListener('DOMContentLoaded', function () {
 	var db = firebase.firestore()
 
-	const addGraph = function (title, charttype, args) {
+	const addGraph = function (title, charttype, args, size, start) {
+		var heights = [0, 0, 0, 0]
 		var min = 9999999
 		var minIndex = 0
-		$('#main > .column > .inner-column').each(function (index) {
-			if ($(this).height() < min) {
-				min = $(this).height()
-				minIndex = index
+		for (var i = 0; i < 4; i++) {
+			$(`#main > .card.card${i + 1}`).each(function (index) {
+				heights[i] += $(this).height()
+			})
+			if (heights[i] < min) {
+				min = heights[i]
+				minIndex = i
 			}
-		})
+		}
+
+		classes = ''
+		var xstart = minIndex
+		var amt = 1
+		if (size != undefined) {
+			if (size == 2) {
+				if (start == 1) {
+					classes = `card card1 card2`
+					xstart = 0;
+					amt = 2;
+				} else if (start == 2) {
+					classes = `card card3 card4`
+					xstart = 2;
+					amt = 2;
+				}
+			}
+		}
+
+		if (classes == '') {
+			classes = `card card${minIndex + 1}`
+		}
 
 		var random = Math.floor(Math.random() * 10000000)
-		$(`.column${minIndex + 1} > .inner-column`).append(`<div class="card"><div class="card-title">${title}</div><div class="chartcontainer"><canvas id="chart-${random}"></canvas></div></div>`)
+		$(`#main`).append(`<div class="${classes}" style="grid-column: ${xstart + 2}/span ${amt}"><div class="card-title">${title}</div><div class="chartcontainer"><canvas id="chart-${random}"></canvas></div></div>`)
 		var ctx = document.getElementById(`chart-${random}`).getContext('2d');
 
 		if (charttype == 'doughnut') {
@@ -25,6 +50,14 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 
 	const drawGraphs = () => {
+		addGraph('Height vs Resting Heartrate', 'scatter', [
+			{ args: ['height', 'resting_heartrate'], filter: ['sex', 'male'] },
+			{ args: ['height', 'resting_heartrate'], filter: ['sex', 'female'] }
+		], 2, 1)
+		addGraph('Age vs Resting Heartrate', 'scatter', [
+			{ args: ['age', 'resting_heartrate'], filter: ['sex', 'male'] },
+			{ args: ['age', 'resting_heartrate'], filter: ['sex', 'female'] }
+		], 2, 2)
 		addGraph('Race Distribution', 'doughnut', 'race')
 		addGraph('Height vs Weight', 'scatter', [
 			{ args: ['height', 'weight'], filter: ['sex', 'male'] },
