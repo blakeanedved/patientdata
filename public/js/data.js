@@ -76,20 +76,20 @@ document.addEventListener('DOMContentLoaded', function () {
 						<td class="id">${data[i].id}</td>
 						<td>${data[i].name}</td>
 						<td>${data[i].age}</td>
-						<td>${data[i].height}</td>
-						<td>${data[i].weight}</td>
+						<td>${data[i].height.toFixed(1)}</td>
+						<td>${data[i].weight.toFixed(1)}</td>
 						<td>${data[i].sex}</td>
 						<td>${data[i].race}</td>
-						<td>${data[i].resting_heartrate}</td>
-						<td>${data[i].systolic_blood_pressure}</td>
-						<td>${data[i].diastolic_blood_pressure}</td>
-						<td>${data[i].blood_sugar}</td>
+						<td>${data[i].resting_heartrate.toFixed(0)}</td>
+						<td>${data[i].systolic_blood_pressure.toFixed(2)}</td>
+						<td>${data[i].diastolic_blood_pressure.toFixed(2)}</td>
+						<td>${data[i].blood_sugar.toFixed(2)}</td>
 					</tr>`)
 		}
 	}
 
 	const getData = () => {
-		db.collection('data').onSnapshot(function (snapshot) {
+		db.collection('data').limit(100).onSnapshot(function (snapshot) {
 			data = []
 			snapshot.forEach(function (doc) {
 				data.push(doc.data())

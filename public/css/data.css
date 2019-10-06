@@ -12,21 +12,39 @@
   .sidenav a {font-size: 18px;}
 }
 
-#customers {
-    border-collapse: separate;
+#customers-container {
     border-radius: 23px;
 	width: 100%;
-	padding: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	/* padding: 10px !important; */
 	background-color: white;
     box-shadow: 0 4px 30px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+#customers {
+	margin-right: 22px;
+	margin-left: 22px;
+    border-collapse: collapse;
+	width: auto;
+}
+
 td {
 	text-align: center;
+	padding-top: 14px;
+	padding-bottom: 14px;
 }
-  
-#customers td, #customers th, #customers tr {
-    padding: 8px;
+
+td, th {
+	width: 9.090909090909%;
+}
+
+tr {
+	border-top: 1px solid #BBBBBB;
+}
+
+tr:first-child {
+	border-top: none;
 }
 
 #customers th {
@@ -51,10 +69,4 @@ td {
 	font-size: 16px; /* Increase font-size */
 	margin-left: 0;
 	border: none;
-}
-
-.header {
-	text-align: center;
-	color: white;
-	display: none;
 }

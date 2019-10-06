@@ -4,37 +4,52 @@ body {
 	padding: 0;
 	width: 100vw;
 	height: 100vh;
-	overflow: hidden;
 	font-family: 'Roboto', sans-serif !important;
 }
 
-/* The navigation menu links */
-.sidenav a {
-	padding: 8px 8px 8px 32px;
-	text-decoration: none;
-	font-size: 25px;
-	color: black;
-	display: block;
-	transition: 0.3s;
-  }
-  
-  /* When you mouse over the navigation links, change their color */
-  .sidenav a:hover {
-	color: black;
-	background-color: gray;
-  }
-  
-  /* The sidenav */
-  .sidenav {
-	  height: 100%;
-	  width: 200px;
-	  position: fixed;
-	  z-index: 1;
-	  top: 0;
-	  left: 0;
-	  /* background-color: #202075; */
-	  background-color:white ;
-	  overflow-x: hidden;
-	  padding-top: 20px;
-	  box-shadow: 0 4px 30px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	}
+#navbar {
+	color: white;
+	width: 60vw;
+	left: 20vw;
+	top: 55px;
+	position: absolute;
+}
+
+#navbar > .navbar-title {
+	float: left;
+	/* font-weight: 500 !important; */
+	cursor: pointer;
+	/* font-size: 2em; */
+}
+
+#navbar > .navbar-title > img {
+	margin-top: -15px;
+	width: 15%;
+	position: absolute;
+}
+
+#navbar > .navbar-links {
+	float: right;
+}
+		
+#navbar > .navbar-links > .navbar-links__link {
+	display: inline-block;
+	font-weight: 500 !important;
+	padding-left: 20px;
+	cursor: pointer;
+	font-size: 2em;
+}
+
+#navbar > .navbar-links > .navbar-links__link > .navbar-links__link-text {
+	margin: 0;
+	font-weight: 500 !important;
+	display: inline-block;
+}
+
+#navbar > .navbar-links > .navbar-links__link > .navbar-links__link-underline {
+	width: 0;
+	height: 5px;
+	background-color: #FFFFFF;
+	position: absolute;
+	border-radius: 5px;
+}

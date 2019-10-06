@@ -7,6 +7,7 @@
     <title>Welcome to Firebase Hosting</title>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/master.css">
     <link rel="stylesheet" href="../css/data.css">
 
@@ -28,15 +29,33 @@
 
         <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
         <div id="main">
-            <div class="header">
-                <h1>Welcome to the Generative Adversarial Network Output</h1>
-            </div>
+            <header id="navbar">
+                <div class="navbar-title">
+                    <img src="../images/Genp.png">
+                </div>
+                <div class="navbar-links">
+                    <div class="navbar-links__link">
+                        <div class="navbar-links__link-text">Data</div>
+                        <div class="navbar-links__link-underline"></div>
+                    </div>
+                    <div class="navbar-links__link">
+                        <div class="navbar-links__link-text">Charts</div>
+                        <div class="navbar-links__link-underline"></div>
+                    </div>
+                    <div class="navbar-links__link">
+                        <div class="navbar-links__link-text">Logout</div>
+                        <div class="navbar-links__link-underline"></div>
+                    </div>
+                </div>
+            </header>
             <!-- search through the names -->
             <div class="filter-container">
                 <input type="text" id="filter" placeholder="Filter">
             </div>
             <!-- example table for now -->
-            <table id="customers"></table>
+            <div id="customers-container">
+                <table id="customers"></table>
+            </div>
         </div>
     </div>
     <script src="../js/master.js"></script>
